@@ -12,6 +12,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "tb_postagens")
 
@@ -32,11 +34,18 @@ public class Postagem {
 	
 	@UpdateTimestamp
 	private LocalDateTime data;
+	
+	@UpdateTimestamp
+	@JsonIgnoreProperties("postagem")
+	private Tema tema;
+	
 
 	public Long getId() {
 		return id;
 	}
-
+	
+	
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -63,6 +72,14 @@ public class Postagem {
 
 	public void setData(LocalDateTime data) {
 		this.data = data;
+	}
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
 	}
 	
 	
