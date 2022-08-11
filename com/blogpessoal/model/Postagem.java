@@ -17,7 +17,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_postagens")
-
 public class Postagem {
 	
 	@Id
@@ -25,8 +24,7 @@ public class Postagem {
 	private Long id;
 	
 	@NotBlank(message = "O atributo título é obrigatório!")
-
-	@Size(min = 3 , max = 255, message = "O titulo deve conter no minimo 05 e no maximo 100 caracteres")
+    @Size(min = 3 , max = 255, message = "O titulo deve conter no minimo 05 e no maximo 100 caracteres")
 	private String titulo;
 	
 	@NotBlank
@@ -38,9 +36,14 @@ public class Postagem {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
+	
+	
+	@ManyToOne
+	@JsonIgnoreProperties("usuario")
 	private Tema tema;
 	
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -81,6 +84,18 @@ public class Postagem {
 
 	public void setTema(Tema tema) {
 		this.tema = tema;
+	}
+
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	
